@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 // import { navLinks } from '../constant';
 // import close from '../assets/close.svg';
@@ -30,6 +31,8 @@ const Navbar = ({ onSearchQueryChange, onCategorySelect }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   // const [searchQuery, setSearchQuery] = useState('');
 
+  const cartItems = useSelector((state) => state.cart.cart);
+
   const inputRef = useRef(null);
 
   const handleCategorySelect = (category) => {
@@ -47,7 +50,7 @@ const Navbar = ({ onSearchQueryChange, onCategorySelect }) => {
   }, [searchbar]);
 
   return (
-    <nav className='w-full flex items-center p-6 bg-white gap-[84px]'>
+    <nav className='w-full flex items-center p-6 bg-white sm:gap-6 md:gap-[70px]'>
       <div className='w-full flex items-center justify-between text-black'>
         <div>
           <h1 className='font-bold text-3xl align-middle hover:cursor-pointer'>
@@ -60,7 +63,7 @@ const Navbar = ({ onSearchQueryChange, onCategorySelect }) => {
           <>
             <input
               ref={inputRef}
-              className='md:w-[650px] p-2 rounded-md outline-none relative bg-gray-300'
+              className='lg:w-[650px] p-2 rounded-md outline-none relative bg-gray-300'
               type='text'
               placeholder='Search for the Products...'
               onChange={(e) => onSearchQueryChange(e.target.value)}
@@ -126,6 +129,19 @@ const Navbar = ({ onSearchQueryChange, onCategorySelect }) => {
         >
           Search
         </p>
+        <Link to={'/cart'} className='rounded-xl text-[18px]'>
+          <button className='text-[18px] cursor-pointer flex '>
+            {/* <img
+              src='https://img.icons8.com/ios/50/000000/shopping-cart.png'
+              alt='cart'
+              className='h-6 w-6 object-contain hover:cursor-pointer'
+            /> */}
+            Cart
+            <span className='bg-gray-500 text-white rounded-full px-2 absolute top-6 right-6 transform translate-x-1/2 -translate-y-1/2'>
+              {cartItems.length}
+            </span>
+          </button>
+        </Link>
       </div>
     </nav>
   );

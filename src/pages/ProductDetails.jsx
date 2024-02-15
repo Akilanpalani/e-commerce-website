@@ -1,10 +1,14 @@
 import { Carousel, IconButton } from '@material-tailwind/react';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 import ProductCards from '../components/ProductCards';
 import Loader from '../common/Loader';
+import { addToCart } from '../redux/cartSlice';
 
 const ProductDetails = () => {
+  const dispatch = useDispatch();
   const params = useParams();
   const id = params.id;
 
@@ -142,7 +146,10 @@ const ProductDetails = () => {
                   ) : (
                     <button
                       className='p-2  w-[40px] border border-gray-500 rounded-lg'
-                      onClick={() => setCount(count - 1)}
+                      onClick={() => {
+                        setCount(count - 1);
+                        // updateCart(productsData.id, count - 1);
+                      }}
                     >
                       -
                     </button>
@@ -153,12 +160,20 @@ const ProductDetails = () => {
                   </p>
                   <button
                     className='p-2 w-[40px] border border-gray-500 rounded-lg'
-                    onClick={() => setCount(count + 1)}
+                    onClick={() => {
+                      setCount(count + 1);
+                      // updateCart(productsData.id, count + 1);
+                    }}
                   >
                     +
                   </button>
                 </div>
-                <button className='px-4 py-2 text-white bg-blue-200 rounded-md'>
+                <button
+                  className='px-4 py-2 text-white bg-blue-200 rounded-md'
+                  onClick={() =>
+                    dispatch(addToCart({ ...productsData, count }))
+                  }
+                >
                   Add to cart
                 </button>
               </div>
