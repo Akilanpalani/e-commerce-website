@@ -4,7 +4,7 @@ import React from 'react';
 // const logo = require("../assets/images/logo.jpg");
 const CarouselBanner = () => {
   return (
-    <div className='mx-0 md:mx-48 h-80 overflow-hidden mt-6'>
+    <div className='mx-0 md:mx-48 h-80 overflow-hidden'>
       <Carousel className='rounded-2xl'>
         <div className='relative h-full w-full gird grid-cols-2 bg-gradient-to-r from-purple-400 to-pink-500'>
           <div className='absolute inset-0 w-[50%]'>
