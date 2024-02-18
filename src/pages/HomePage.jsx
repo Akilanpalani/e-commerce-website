@@ -11,6 +11,7 @@ const HomePage = () => {
   const [category, setCategory] = useState('');
   const [loading, setLoading] = useState(true);
 
+  console.log(setCategory);
   const itemsPerPage = 10;
 
   useEffect(() => {
@@ -32,7 +33,7 @@ const HomePage = () => {
       ) : (
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-5'>
           <h1 className='text-2xl mb-4'>All Products</h1>
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:justify-center sm:items-center'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:justify-center sm:items-center'>
             {/* Product Cards */}
             {products &&
               products.map((product) => (
