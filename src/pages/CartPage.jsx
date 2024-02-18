@@ -9,7 +9,7 @@ const CartPage = () => {
   return (
     <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-5'>
       {cartItems && cartItems.length === 0 ? (
-        <div>
+        <div className='flex justify-center items-center h-screen'>
           <p className='text-2xl text-center'>Cart is empty</p>
         </div>
       ) : (
@@ -20,15 +20,15 @@ const CartPage = () => {
               <div className='max-w-[300px] flex flex-col'>
                 <ProductCards key={product.id} product={product} />
                 <button
-                  onClick={() => dispatch(clearCart)}
+                  onClick={() => dispatch(clearCart(product.id))}
                   className='bg-green-500 text-center'
                 >
-                  Clear Cart
+                  Clear Item
                 </button>
               </div>
             ))}
           </div>
-          <div className='flex justify-center'>
+          <div className='flex justify-center mt-10'>
             <button
               onClick={() => dispatch(clearCart())}
               className='rounded-md bg-red-500 text-center p-2'
