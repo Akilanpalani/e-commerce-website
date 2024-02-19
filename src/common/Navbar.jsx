@@ -3,14 +3,9 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { MdClose, MdMenu } from 'react-icons/md';
 
-// import { navLinks } from '../constant';
-// import close from '../assets/close.svg';
-// import menu from '../assets/menu.svg';
-// import { Link } from "react-router-dom";
+// const ecommerce = require('../assets/images/ecommerce-logo.png');
 
-const ecommerce = require('../assets/images/ecommerce-logo.png');
-
-const Navbar = ({ onSearchQueryChange, onCategorySelect }) => {
+const Navbar = ({ onSearchQueryChange }) => {
   const productsList = [
     { name: 'All' },
     { name: 'Smartphones', id: 'smartphones' },
@@ -28,8 +23,7 @@ const Navbar = ({ onSearchQueryChange, onCategorySelect }) => {
     { name: 'Home Decoration', id: 'home-decoration' },
     { name: 'Furniture', id: 'furniture' },
   ];
-  // const [toggle, setToggle] = useState(false);
-  // const [active, setActive] = useState('');
+
   const [searchbar, setSearchBar] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   // const [searchQuery, setSearchQuery] = useState('');
@@ -43,14 +37,13 @@ const Navbar = ({ onSearchQueryChange, onCategorySelect }) => {
     setIsMobileMenu(!isMobileMenu);
   };
 
-  const handleCategorySelect = (category) => {
-    // onCategorySelect(category);
-    // setToggle(false);
-    // setActive(category);
-    // onSearchQueryChange(searchQuery);
+  const handleCategorySelect = () => {
     setShowDropdown(false);
   };
 
+  const handleSearch = (query) => {
+    onSearchQueryChange(query);
+  };
   useEffect(() => {
     if (searchbar && inputRef.current) {
       inputRef.current.focus();
@@ -61,17 +54,19 @@ const Navbar = ({ onSearchQueryChange, onCategorySelect }) => {
     <nav className='w-full flex items-center p-6 sm:gap-6 md:gap-[70px] bg-[#f5f5f5]'>
       <div className='w-full flex items-center justify-between text-black'>
         <div className='flex items-center gap-4'>
-          {/* <h1 className='font-bold text-3xl align-middle hover:cursor-pointer drop-shadow'>
-            E-Commerce
-          </h1> */}
           <Link to='/'>
+            <h1 className='font-bold sm:text-md text-lg md:text-3xl align-middle hover:cursor-pointer'>
+              E-Commerce
+            </h1>
+          </Link>
+          {/* <Link to='/'>
             <img
               src='https://cdn-icons-png.flaticon.com/512/1384/1384060.png'
               // src={ecommerce}
               alt='e-commerce'
               className='h-[10px] w-[10px] object-cover'
             />
-          </Link>
+          </Link> */}
         </div>
       </div>
       <div className='hidden md:flex'>
@@ -82,7 +77,7 @@ const Navbar = ({ onSearchQueryChange, onCategorySelect }) => {
               className='lg:w-[650px] p-2 rounded-md outline-none relative bg-gray-300'
               type='text'
               placeholder='Search for the Products...'
-              onChange={(e) => onSearchQueryChange(e.target.value)}
+              onChange={(e) => handleSearch(e.target.value)}
             />
           </>
         )}

@@ -40,11 +40,11 @@ const ProductDetails = () => {
   }, [productsData]);
 
   return (
-    <>
+    <div className='flex flex-col items-center gap-19'>
       {loading ? (
         <Loader />
       ) : (
-        <div className='flex flex-col gap-19 mx-48'>
+        <div className='flex flex-col items-center mx-3'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-y-10 mt-14'>
             <Carousel
               className='bg-black max-w-[600px]'
@@ -198,7 +198,7 @@ const ProductDetails = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
